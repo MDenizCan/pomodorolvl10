@@ -1,0 +1,54 @@
+#theme-switch{
+  height: 70px;
+  width: 70px;
+  background-color: var(--buttons-color);
+  border-radius: 10px;
+  justify-content: center; 
+  align-items: center;  
+  border: none;
+}
+#theme-switch:hover{
+  opacity: 0.8;
+}
+#theme-switch:active{
+  opacity: 0.6;
+}
+#theme-switch svg{
+  fill: var(--secondary-color);
+  height: 40px;
+  width: 40px;
+}
+#theme-switch svg:last-child{
+  display: none;
+}
+.darkmode #theme-switch svg:first-child{
+  display: none;
+}
+.darkmode #theme-switch svg:last-child{
+  display: inline;
+}
+
+
+#mute-switch{
+  height: 70px;
+  width: 70px;
+  background-color: var(--buttons-color);
+  border-radius: 12px;
+  justify-content: center; 
+  align-items: center;  
+  border: none;
+}
+#mute-switch:hover{
+  opacity: 0.8;
+}
+#mute-switch:active{
+  opacity: 0.6;
+}
+#mute-switch svg{
+  fill: var(--secondary-color);
+  height: 40px;
+  width: 40px;
+}
+#mute-switch svg:last-child{
+  display: none;
+}

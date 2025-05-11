@@ -1,0 +1,61 @@
+#startButton{
+    background-color: #4CAF50; 
+    color: white;
+    display: inline-block;
+    font-size: 32px;
+    padding: 15px 32px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+#startButton:hover {
+    opacity: 0.8; 
+}
+#startButton:active {
+    opacity: 0.6;
+}
+
+#resetButton{
+    background-color: dodgerblue; 
+    color: white;
+    display: inline-block;
+    font-size: 32px;
+        padding: 15px 32px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+
+#resetButton:hover {
+    opacity: 0.8; 
+}
+#resetButton:active {
+    opacity: 0.6;
+}
+
+#pauseButton{
+    background-color: red; 
+    color: white;
+    display: inline-block;
+    font-size: 32px;
+        padding: 15px 32px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+
+#pauseButton:hover {
+    opacity: 0.8; 
+}
+#pauseButton:active {
+    opacity: 0.6;
+}
