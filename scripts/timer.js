@@ -1,44 +1,57 @@
-let timerInterval;        
-let timeLeft = 25 * 60;  
-let isPomodoro = true;    
-let isPaused = false;     
-let isRunning = false;    
+const start = document.getElementById("startButton");
+const pause = document.getElementById("pauseButton");
+const reset = document.getElementById("resetButton");
+const timerDisplay = document.getElementById("countDownTimer");
+const alarmSound = new Audio("/sounds/alarmSound.mp3");
 
-function pomodoroTimer() {
-    if (timerInterval) clearInterval(timerInterval);  
 
-    isRunning = true;      
-    isPaused = false;      
 
-    timerInterval = setInterval(function () {
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            alert("Pomodoro time is over! Now it's time to take a break!");
-            document.getElementById("text").innerHTML = "Break!";
-            isPomodoro = false;
-            timeLeft = 5 * 60;  
-            pomodoroTimer();   
-            return;
+let timeLeft = 3; // 25 minutes in seconds
+let interval = null;
+
+const updateTimer = () => {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+
+    timerDisplay.innerHTML =
+        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+};
+
+const startTimer = () => {
+    if (interval) return;
+    interval = setInterval(() => {
+        timeLeft--;
+        updateTimer();
+
+        if (timeLeft === 0) {
+            clearInterval(interval);
+            interval = null;
+            if (!muteSwitch.classList.contains('isMuted')) {
+                alarmSound.play();
+            }
+            alert("Time's up!");
+            timeLeft = 3;
+            updateTimer();
         }
-        updateDisplay();
-        timeLeft--;  
     }, 1000);
-}
+};
 
-function resetTimer() {
-    clearInterval(timerInterval);
-    isPomodoro = true;
-    isPaused = false;
-    isRunning = false;
-    timeLeft = 25 * 60;
-    document.getElementById("countDownTimer").innerHTML = "25:00";
-    document.getElementById("text").innerHTML = "Pomodoro!";
-    document.getElementById("startButton").innerHTML = "Start!";
-}
+const pauseTimer = () => {
+    clearInterval(interval);
+    interval = null;
+};
 
-function updateDisplay() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    document.getElementById("countDownTimer").innerHTML =
-        minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0');
-}
+const resetTimer = () => {
+    clearInterval(interval);
+    interval = null;
+    timeLeft = 1500;
+    updateTimer();
+};
+
+// Butonlara event listener bağla
+if (start) start.addEventListener("click", startTimer);
+if (pause) pause.addEventListener("click", pauseTimer);
+if (reset) reset.addEventListener("click", resetTimer);
+
+
+updateTimer(); 
